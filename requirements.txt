@@ -1,0 +1,8 @@
+python-dotenv 
+"langchain==1.2.12"
+langchain-core
+langchain-openai
+langchain-elasticsearch
+elasticsearch
+langchain-community
+

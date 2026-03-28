@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+
+# Virtual environment
+.venv/
+
+# Secrets (see .env.example)
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# npm (root package.json)
+node_modules/
+
+# macOS
+.DS_Store
+
+# Local workshop artifacts
+data/
+jina-grep-cli/
