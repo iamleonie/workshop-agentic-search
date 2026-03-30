@@ -1,7 +1,6 @@
 # Workshop: Agentic Search for Context Engineering
 
-This workshop discusses how to ...
-agentic search
+This workshop discusses different agentic search techniques for context engineering.
 
 ![](/img/agent_search_for_context_engineering_overview.png)
 
@@ -21,67 +20,48 @@ This notebook uses `langchain` `v1.2.12` and `langchain-openai` `v1.1.11`.
 pip install -r requirements.txt 
 ```
 
-### 3. Data preparation
+### 3. Set up Elasticsearch
 
-Data: https://www.ai.engineer/europe/schedule
+This workshop uses a local Elasticsearch instance as one of the out-of-context sources.
 
-The easiest way to run Elasticsearch locally for development and testing is using the start-local script. This script sets up Elasticsearch (and optionally Kibana) using Docker with a simple one-line command.
+The easiest way to run Elasticsearch locally is using the `start-local` script, which sets up Elasticsearch (and optionally Kibana) using Docker with a simple one-line command:
 
 ```bash
 curl -fsSL https://elastic.co/start-local | sh
 ```
 
-This creates an elastic-start-local folder containing configuration files and startup scripts. To start Elasticsearch:
+This creates an *elastic-start-local* folder containing configuration files and startup scripts. To start Elasticsearch:
 
 ```
 cd elastic-start-local
 ./start.sh
 ```
 
-### 4. API Keys
+### 4. Environment variables and API Keys
 
-see .env.example
-- Create one at https://platform.openai.com/account/api-keys if you don't have one
-- Embeddings use [Jina Embeddings](https://docs.langchain.com/oss/python/integrations/embeddings/jina) (`jina-embeddings-v2-base-en`), same as the other notebooks. Add `JINA_API_KEY` in `.env` if needed ([Jina dashboard](https://jina.ai/api-dashboard/embedding)). 
-- Get free Jina API key: https://jina.ai/api-dashboard/embedding
+This workshop requires three categories of environment variables, which need to be added to the `.env` file (see `.env.example`)
+- **LLM API key:** These notebooks use OpenAI models through LLMLite. Alternatively, you can use any LLM of your choice that is capable of tool use. 
+- **Jina API key:**  You can obtain a free Jina API key on from the [official Jina page](https://jina.ai/api-dashboard/embedding) without registration.
+- **Elasticsearch credentials:** During the set up of your local Elasticsearch instance, you will find the Password (username and url stay the same).
+
+
+### 5. Data preparation
+
+The workshop's examples are based on the AI Engineer Europe Conference schedule, which is available in the `data` folder under `session.json` (Downloaded from: https://www.ai.engineer/europe/schedule).
+
+This workshop discusses data store and filesystem as context sources. To prepare the Elasticsearch data store and the local filesystem, run the [data preparation notebook](./notebooks/00_prepare_data.ipynb).
 
 ## Course Outline
 
-TODO 
-
-
-### [Vanilla Agentic Search](./notebooks/01_vanilla_agentic_search.ipynb)
-
-- Context source: Local Elasticsearch cluster
-- Context retrieval tool: Semantic search tool
-
-### [Agentic Search with DB query tool](./notebooks/02_advanced_agentic_search.ipynb)
-
-- Context source: Local Elasticsearch cluster
-- Context retrieval tool: ES|QL Query execution tool
-
-- ES|QL
-- Elastic Agent Skills for Elasticsearch
-
-Install [Elastic Agent Skills](https://github.com/elastic/agent-skills/tree/main)
-
-```bash
-npx skills add elastic/agent-skills
-```
-
-### [Agentic Search with Shell tool](./notebooks/03_agentic_search_with_bash_tool.ipynb)
-
-- Context source: Local filesystem
-- Context retrieval tool: Shell tool
-- File search with `grep`
-- Semantic file search with [`jina-grep` CLI](https://github.com/jina-ai/jina-grep-cli)
-
-```bash
-git clone https://github.com/jina-ai/jina-grep-cli.git && cd jina-grep-cli
-uv pip install -e .
-```
+| **Topic** | **Context source** | **Retrieval tool** | **Notebook** |
+| --- | --- | --- | --- |
+| Vanilla Agentic Search | Local Elasticsearch cluster | Semantic search tool | [01_vanilla_agentic_search.ipynb](./notebooks/01_vanilla_agentic_search.ipynb) |
+| Agentic Search with DB query tool | Local Elasticsearch cluster | ESQL Query execution tool (+ Agent Skills) | [02_advanced_agentic_search.ipynb](./notebooks/02_advanced_agentic_search.ipynb) |
+| Agentic Search with Shell tool | Local Filesystem | Shell tool (+ `jina-grep-cli`) | [03_agentic_search_with_bash_tool.ipynb](./notebooks/03_agentic_search_with_bash_tool.ipynb) |
 
 # Additional Resources
 - [The shell tool is not a silver bullet for context engineering](https://www.elastic.co/search-labs/blog/search-tools-context-engineering)
 - [Building effective database retrieval tools for context engineering](https://www.elastic.co/search-labs/blog/database-retrieval-tools-context-engineering)
 - [Elasticsearch Quickstart](https://www.elastic.co/docs/reference/elasticsearch/clients/python/getting-started)
+- [Elastic Agent Skills](https://github.com/elastic/agent-skills/tree/main)
+- [`jina-grep` CLI](https://github.com/jina-ai/jina-grep-cli)

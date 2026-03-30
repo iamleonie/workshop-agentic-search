@@ -19,8 +19,8 @@ The conference sessions are indexed in Elasticsearch. One document per session.
 | Field | Description |
 |--------------|------------|
 | `metadata.title` | Title of the session|
-| `metadata.day` | Date of the session |
-| `metadata.time` | Time slot of the session |
+| `metadata.day` | Date of the session (Example format: April 10) |
+| `metadata.time` | Time slot of the session (Example format: 12:40–1:00pm) |
 | `metadata.room` | Room where the session takes place |
 | `metadata.type` | One of 'keynote', 'workshop', 'talk', 'track_keynote', 'lightning', 'expo_session' |
 | `metadata.track` | Track |
