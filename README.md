@@ -2,7 +2,7 @@
 
 This workshop discusses different agentic search techniques for context engineering.
 
-![](/img/agent_search_for_context_engineering_overview.png)
+![](/img/Agentic%20Search%20for%20Context%20Engineering.png.png)
 
 ## Set up
 
