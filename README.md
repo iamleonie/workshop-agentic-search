@@ -4,6 +4,11 @@ This workshop discusses different agentic search techniques for context engineer
 
 ![](/img/Agentic%20Search%20for%20Context%20Engineering.png)
 
+**Learning outcomes:** By the end of this workshop you will have
+- experimented with a few different ways to search for context across different context sources
+- learned how you can expand the capabilities of search tools with Agent Skills and additional CLIs
+- gained an intuition on the trade-offs for different search tool
+
 ## Set up
 
 
@@ -32,15 +37,22 @@ curl -fsSL https://elastic.co/start-local | sh
 
 This creates an *elastic-start-local* folder containing configuration files and startup scripts. To start Elasticsearch:
 
-```
+```bash
 cd elastic-start-local
 ./start.sh
+```
+
+Expected output:
+
+```bash
+ ✔ Container es-local-dev          Healthy                                                                     
+ ✔ Container kibana-local-dev      Healthy
 ```
 
 ### 4. Environment variables and API Keys
 
 This workshop requires three categories of environment variables, which need to be added to the `.env` file (see `.env.example`)
-- **LLM API key:** These notebooks use OpenAI models through LLMLite. Alternatively, you can use any LLM of your choice that is capable of tool use. 
+- **LLM API key:** These notebooks use OpenAI models through LiteLLM. Alternatively, you can use any LLM of your choice that is capable of tool use. 
 - **Jina API key:**  You can obtain a free Jina API key on from the [official Jina page](https://jina.ai/api-dashboard/embedding) without registration.
 - **Elasticsearch credentials:** During the set up of your local Elasticsearch instance, you will find the Password (username and url stay the same).
 
